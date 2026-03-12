@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Auth from './screens/auth/auth';
+import DetailHouse from './screens/detail_house/detail_house';
+import Admin from './screens/admin/admin';
+import CreateHouse from './screens/create_house/create_house';
+import { AuthProvider } from './AuthContext';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Auth />} />
+          <Route path="/detail_house" element={<DetailHouse />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/create_house" element={<CreateHouse />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
